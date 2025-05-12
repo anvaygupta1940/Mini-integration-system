@@ -25,7 +25,7 @@ const CustomerForm = () => {
             setIsSubmitting(true);
             setFeedback(null);
 
-            await axios.post(`${process.env.REACT_APP_CRM_BACKEND_URL}/customers/`, formData);
+            await axios.post(`${process.env.REACT_APP_CRM_BACKEND_URL}/api/customers/`, formData);
 
             setFeedback({
                 type: 'success',

@@ -11,7 +11,7 @@ const CustomerList = () => {
     const fetchCustomers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`${process.env.REACT_APP_CRM_BACKEND_URL}/customers/`);
+        const response = await axios.get(`${process.env.REACT_APP_CRM_BACKEND_URL}/api/customers/`);
         setCustomers(response.data);
         setError(null);
       } catch (err) {

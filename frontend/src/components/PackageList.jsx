@@ -11,7 +11,7 @@ const PackageList = () => {
         const fetchPackages = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`${process.env.REACT_APP_INVENTORY_BACKEND_URL}/packages/`);
+                const response = await axios.get(`${process.env.REACT_APP_INVENTORY_BACKEND_URL}/api/packages/`);
                 setPackages(response.data);
                 setError(null);
             } catch (err) {

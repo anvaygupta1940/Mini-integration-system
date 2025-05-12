@@ -15,7 +15,6 @@ app.use(express.json());
 // allowing cross-origin requests
 const corsOptions = {
     origin: process.env.FRONTEND_URL,
-    credentials: true,
 };
 app.use(cors(corsOptions));
 

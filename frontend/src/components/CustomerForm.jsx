@@ -25,13 +25,14 @@ const CustomerForm = () => {
             setIsSubmitting(true);
             setFeedback(null);
 
-            await axios.post(`${process.env.REACT_APP_CRM_BACKEND_URL}/api/customers/`, formData);
+            const response = await axios.post(`${process.env.REACT_APP_CRM_BACKEND_URL}/api/customers/`, formData);
 
             setFeedback({
                 type: 'success',
                 message: 'Customer added successfully! A welcome package has been created.'
             });
 
+            // Reset form
             setFormData({
                 name: '',
                 email: '',
@@ -43,7 +44,7 @@ const CustomerForm = () => {
             console.error('Error adding customer:', error);
             setFeedback({
                 type: 'error',
-                message: 'Failed to add customer. Please try again.'
+                message: error.response?.data?.error || 'Failed to add customer. Please try again.'
             });
         } finally {
             setIsSubmitting(false);
@@ -78,7 +79,7 @@ const CustomerForm = () => {
                             onChange={handleChange}
                             required
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border"
-                            placeholder="Test User"
+                            placeholder="John Doe"
                         />
                     </div>
 
@@ -94,7 +95,7 @@ const CustomerForm = () => {
                             onChange={handleChange}
                             required
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border"
-                            placeholder="test@example.com"
+                            placeholder="john@example.com"
                         />
                     </div>
 
@@ -106,11 +107,10 @@ const CustomerForm = () => {
                             type="tel"
                             id="phone"
                             name="phone"
-                            required
                             value={formData.phone}
                             onChange={handleChange}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border"
-                            placeholder="(+91)- **********"
+                            placeholder="(555) 123-4567"
                         />
                     </div>
 
@@ -123,10 +123,9 @@ const CustomerForm = () => {
                             name="address"
                             value={formData.address}
                             onChange={handleChange}
-                            rows="3"
-                            required
+                            rows={3}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border"
-                            placeholder="enter your address here"
+                            placeholder="123 Main St, City, State, Zip"
                         />
                     </div>
 

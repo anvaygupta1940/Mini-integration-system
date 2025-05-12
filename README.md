@@ -4,14 +4,32 @@ A full-stack integration between a CRM system and Inventory management using web
 
 ## 🏗️ Architecture
 
-```
-User (React Frontend)
-       |
-       V
-CRM Backend (POST /customers) -- triggers webhook --> Inventory Backend (POST /packages/webhook)
-       |                                                  |
-   MongoDB (Customers)                             MongoDB (Packages)
-```
+                        +------------------+
+                        |   React Frontend |
+                        |------------------|
+                        | - Add Customer   |
+                        | - View Packages  |
+                        +--------+---------+
+                                 |
+                                 V
+                        +--------+---------+
+                        |   CRM Backend    |
+                        |------------------|
+                        | - /customers     |
+                        | - MongoDB (CRM)  |
+                        +--------+---------+
+                                 |
+                     Webhook POST Trigger
+                                 |
+                                 V
+                        +--------+---------+
+                        | Inventory Backend|
+                        |------------------|
+                        | - /packages/webhook |
+                        | - Create Package |
+                        | - Send Email     |
+                        | - MongoDB (Inventory) |
+                        +------------------+
 
 ## 🚀 Getting Started
 
@@ -52,7 +70,7 @@ npm start
 - Webhooks to Inventory
 
 ### Inventory Backend
-- Automatic welcome package creation
+- Automatic welcome package creation and send mail to customer
 - View all packages
 - Webhook endpoint
 

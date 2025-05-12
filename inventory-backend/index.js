@@ -15,7 +15,8 @@ app.use(express.json());
 
 // allowing cross-origin requests
 const corsOptions = {
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL, // e.g., https://deploy-mern-frontend.vercel.app
+    methods: ["GET", "POST"]
 };
 app.use(cors(corsOptions));
 
